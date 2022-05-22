@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-class CreatePost < ActiveInteraction::Base
+class CreatePostWithDefaultTitle < ActiveInteraction::Base
   include PostConcern
 
   record :user
-  string :title, default: -> { "#{user.name}'s post" }
 
   def execute
     Post.create(user: user, title: title)
